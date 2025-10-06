@@ -2,45 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Estilos para el efecto de destello (glint) */
+/* Borramos el código anterior del efecto "glint" 
+  y lo reemplazamos con este nuevo efecto de neón al pasar el mouse.
+*/
 .logo-container {
   position: relative;
   display: inline-block;
-  overflow: hidden;
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  filter: none; /* Por defecto no tiene ningún efecto de brillo */
+  transition: filter 0.3s ease-in-out; /* Transición suave para que el brillo aparezca y desaparezca con elegancia */
 }
 
-.logo-container::after {
-  content: '';
-  position: absolute;
-  top: -110%;
-  left: -210%;
-  width: 200%;
-  height: 200%;
-  opacity: 0;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.15) 77%,
-    rgba(255, 255, 255, 0.5) 92%,
-    rgba(255, 255, 255, 0.0) 100%
-  );
-  transform: rotate(45deg);
-  animation: glint-effect 4s infinite;
-  animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
-}
-
-@keyframes glint-effect {
-  0% {
-    opacity: 0;
-    transform: translateX(-100%) skewX(-30deg) rotate(45deg);
-  }
-  20% {
-    opacity: 1;
-    transform: translateX(100%) skewX(-30deg) rotate(45deg);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(100%) skewX(-30deg) rotate(45deg);
-  }
+.logo-container:hover {
+  /* Al pasar el mouse, aplicamos un filtro de "sombra paralela" que simula un brillo de neón */
+  filter: drop-shadow(0 0 8px rgba(255, 223, 0, 0.9)) /* Un brillo interior más definido y amarillo */
+          drop-shadow(0 0 15px rgba(255, 193, 7, 0.7)); /* Un halo exterior más suave y anaranjado */
 }
