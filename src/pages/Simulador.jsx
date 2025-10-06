@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
+import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
-// --- Sub-componente para el formulario (CON MEJORAS RESPONSIVAS) ---
+// --- Sub-componente para el formulario ---
 function FormularioSimulador({ sector, setSector, pagoMensual, setPagoMensual, onCalcular }) {
   const rangos = {
     Residencial: { min: 2500, max: 50000, step: 500 },
@@ -15,7 +16,7 @@ function FormularioSimulador({ sector, setSector, pagoMensual, setPagoMensual, o
     const { min, max } = rangos[sector];
     if (pagoMensual < min) setPagoMensual(min);
     if (pagoMensual > max) setPagoMensual(max);
-  }, [sector]);
+  }, [sector, pagoMensual, setPagoMensual]);
   
   return (
     <div className="max-w-4xl mx-auto text-center">
@@ -30,11 +31,9 @@ function FormularioSimulador({ sector, setSector, pagoMensual, setPagoMensual, o
       </div>
       
       <h2 className="text-2xl font-bold mb-4">2. Selecciona tu pago mensual actual</h2>
-      
       <div className="text-yellow-400 text-4xl font-bold my-6">
         ${new Intl.NumberFormat('es-MX').format(pagoMensual)}
       </div>
-
       <div className="px-6 md:px-4">
         <input 
           type="range" 
@@ -50,7 +49,6 @@ function FormularioSimulador({ sector, setSector, pagoMensual, setPagoMensual, o
           <span>${new Intl.NumberFormat('es-MX').format(rangos[sector].max)}</span>
         </div>
       </div>
-      
       <button onClick={onCalcular} className="bg-yellow-400 text-black font-bold text-xl py-3 px-12 rounded-lg hover:bg-yellow-500 transition-colors mt-16">
         Calcular
       </button>
@@ -61,6 +59,7 @@ function FormularioSimulador({ sector, setSector, pagoMensual, setPagoMensual, o
 // --- Sub-componente para los resultados ---
 function ResultadosSimulador({ sector, pagoMensual, proyeccion, onEditar }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const whatsappLink = "https://wa.me/524421794354?text=Hola,%20vi%20la%20proyección%20de%20ahorro%20en%20el%20simulador%20y%20me%20gustaría%20una%20cotización%20personalizada.";
 
   return (
     <div ref={ref} className="max-w-5xl mx-auto text-center">
@@ -95,6 +94,27 @@ function ResultadosSimulador({ sector, pagoMensual, proyeccion, onEditar }) {
           </ResponsiveContainer>
         </div>
       </div>
+      <div className="mt-20 pt-10 border-t border-gray-700">
+        <h3 className="text-3xl md:text-4xl font-bold text-yellow-400">¡EMPIEZA POR CONTACTARNOS!</h3>
+        <p className="text-gray-400 max-w-2xl mx-auto mt-4 mb-8">
+          Se muestra una proyección simulada del ahorro que podrías tener al invertir en energías limpias. Contáctanos para obtener una proyección personalizada.
+        </p>
+        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-green-500 text-white font-bold text-lg py-3 px-8 rounded-full hover:bg-green-600 transition-transform hover:scale-105">
+          <FaWhatsapp size={24} />
+          Contáctanos
+        </a>
+        <div className="flex justify-center gap-6 mt-6">
+          <a href="tel:+524421794354" aria-label="Llamar por teléfono" className="bg-gray-800 p-4 rounded-full hover:bg-yellow-400 hover:text-black transition-colors">
+            <FaPhoneAlt size={22} />
+          </a>
+          <a href="mailto:contacto@solarkapitalmexico.com" aria-label="Enviar correo electrónico" className="bg-gray-800 p-4 rounded-full hover:bg-yellow-400 hover:text-black transition-colors">
+            <FaEnvelope size={22} />
+          </a>
+          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="Chatear por WhatsApp" className="bg-gray-800 p-4 rounded-full hover:bg-yellow-400 hover:text-black transition-colors">
+            <FaWhatsapp size={22} />
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
@@ -120,16 +140,13 @@ function Simulador() {
     for (let anio = 1; anio <= 20; anio++) {
       acumuladoCFE += costoCFEAnual;
       acumuladoSolar += (anio <= 5) ? pagoAnualFijo : 0;
-      
       proyeccionGrafica.push({ name: `Año ${anio}`, "Costo CFE": Math.round(acumuladoCFE), "Costo Solar": Math.round(acumuladoSolar) });
       costoCFEAnual *= 1.12;
-      
       if (anio % 5 === 0) {
         ahorroTotal = acumuladoCFE - acumuladoSolar;
         proyeccionTabla.push({ periodo: anio, ahorro: Math.round(ahorroTotal) });
       }
     }
-
     setProyeccion({ tabla: proyeccionTabla, grafica: proyeccionGrafica });
     setStep(2);
   };
