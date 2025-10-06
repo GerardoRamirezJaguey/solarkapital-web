@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos para el efecto de destello (glint) */
+.logo-container {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+.logo-container::after {
+  content: '';
+  position: absolute;
+  top: -110%;
+  left: -210%;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.15) 77%,
+    rgba(255, 255, 255, 0.5) 92%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+  transform: rotate(45deg);
+  animation: glint-effect 4s infinite;
+  animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+@keyframes glint-effect {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%) skewX(-30deg) rotate(45deg);
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(100%) skewX(-30deg) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%) skewX(-30deg) rotate(45deg);
+  }
+}
