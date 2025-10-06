@@ -1,16 +1,15 @@
+// src/components/NumeroAnimado.jsx
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 
 function NumeroAnimado({ end, duration = 2, prefix = "", suffix = "" }) {
-  // Cambiamos el threshold a 0 para que se active al ver el primer pixel
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0, 
-    fallbackInView: true, // Mantenemos el fallback por seguridad
+    threshold: 0.1,
   });
 
   return (
-    <div ref={ref} className="h-12"> {/* Damos una altura fija para evitar saltos de layout */}
+    <div ref={ref}>
       {inView ? (
         <CountUp 
           start={0} 
@@ -19,13 +18,13 @@ function NumeroAnimado({ end, duration = 2, prefix = "", suffix = "" }) {
           prefix={prefix} 
           suffix={suffix} 
           separator=","
-        />
+        >
+          {({ countUpRef }) => <span ref={countUpRef} />}
+        </CountUp>
       ) : (
-        // Muestra un placeholder para que el espacio no quede vacío antes de animar
-        <span>&nbsp;</span> 
+        <span>{prefix}0{suffix}</span>
       )}
     </div>
   );
 }
-
 export default NumeroAnimado;
