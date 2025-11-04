@@ -107,7 +107,7 @@ function ResultadosSimulador({ sector, pagoMensual, proyeccion, onEditar }) {
           <a href="tel:+524421794354" aria-label="Llamar por teléfono" className="bg-gray-800 p-4 rounded-full hover:bg-yellow-400 hover:text-black transition-colors">
             <FaPhoneAlt size={22} />
           </a>
-          <a href="mailto:contacto@solarkapitalmexico.com" aria-label="Enviar correo electrónico" className="bg-gray-800 p-4 rounded-full hover:bg-yellow-400 hover:text-black transition-colors">
+          <a href="mailto:edgar.ramirez@solarkapitalmexico.com" aria-label="Enviar correo electrónico" className="bg-gray-800 p-4 rounded-full hover:bg-yellow-400 hover:text-black transition-colors">
             <FaEnvelope size={22} />
           </a>
           <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="Chatear por WhatsApp" className="bg-gray-800 p-4 rounded-full hover:bg-yellow-400 hover:text-black transition-colors">
