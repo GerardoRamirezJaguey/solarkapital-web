@@ -1,6 +1,7 @@
 import { Outlet, Link } from 'react-router-dom';
 import logo from './assets/Logo.png'; 
 import { FaWhatsapp } from 'react-icons/fa';
+import ClientesCarrusel from './components/ClientesCarrusel';
 
 function App() {
   return (
