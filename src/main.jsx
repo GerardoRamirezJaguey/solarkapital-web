@@ -12,6 +12,7 @@ import Negocio from './pages/Negocio.jsx';
 import Industria from './pages/Industria.jsx';
 import Corporativo from './pages/Corporativo.jsx';
 import Simulador from './pages/Simulador.jsx';
+import Informacion from './pages/Informacion.jsx'; // <-- 1. AÑADIDO: Importa la nueva página
 
 // Importación de los estilos globales
 import './index.css';
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       { 
         path: "corporativo", 
         element: <Corporativo /> 
+      },
+      {
+        path: "informacion", // <-- 2. AÑADIDO: Define la nueva ruta
+        element: <Informacion />
       },
       {
         path: "simulador",

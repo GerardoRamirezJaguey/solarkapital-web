@@ -1,7 +1,7 @@
-// src/App.jsx
 import { Outlet, Link } from 'react-router-dom';
 import logo from './assets/Logo.png';
-import { FaWhatsapp } from 'react-icons/fa';
+// 1. IMPORTA LOS ÍCONOS DE REDES SOCIALES
+import { FaWhatsapp, FaFacebook, FaInstagram } from 'react-icons/fa';
 import ClientesCarrusel from './components/ClientesCarrusel';
 
 function App() {
@@ -17,6 +17,12 @@ function App() {
           </Link>
 
           <ul className="hidden md:flex space-x-8">
+            {/* 2. AÑADIDO ENLACE "INICIO" */}
+            <li>
+              <Link to="/" className="hover:text-yellow-400 transition-colors">
+                Inicio
+              </Link>
+            </li>
             <li>
               <Link to="/hogar" className="hover:text-yellow-400 transition-colors">
                 Hogar
@@ -35,6 +41,12 @@ function App() {
             <li>
               <Link to="/corporativo" className="hover:text-yellow-400 transition-colors">
                 Corporativo
+              </Link>
+            </li>
+            {/* 3. AÑADIDO ENLACE "INFORMACIÓN" */}
+            <li>
+              <Link to="/informacion" className="hover:text-yellow-400 transition-colors">
+                Información
               </Link>
             </li>
           </ul>
@@ -64,6 +76,29 @@ function App() {
           <p className="mb-4">
             Transformando la energía de México, un panel a la vez.
           </p>
+          
+          {/* 4. AÑADIDOS ÍCONOS DE REDES SOCIALES */}
+          <div className="flex justify-center gap-6 mb-6">
+            <a 
+              href="https://www.facebook.com/SolarKapitalMexico" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Facebook"
+              className="text-gray-400 hover:text-yellow-400 transition-colors"
+            >
+              <FaFacebook size={28} />
+            </a>
+            <a 
+              href="https://www.instagram.com/solarkapitalmexico_" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Instagram"
+              className="text-gray-400 hover:text-yellow-400 transition-colors"
+            >
+              <FaInstagram size={28} />
+            </a>
+          </div>
+
           <p>
             &copy; {new Date().getFullYear()} Solarkapital México. Todos los derechos reservados.
           </p>
