@@ -1,3 +1,4 @@
+// src/main.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -12,7 +13,8 @@ import Negocio from './pages/Negocio.jsx';
 import Industria from './pages/Industria.jsx';
 import Corporativo from './pages/Corporativo.jsx';
 import Simulador from './pages/Simulador.jsx';
-import Informacion from './pages/Informacion.jsx'; // <-- 1. AÑADIDO: Importa la nueva página
+import Informacion from './pages/Informacion.jsx';
+import FaqPage from './pages/FaqPage.jsx'; // <-- 1. AÑADIDO: Importa la página FAQ
 
 // Importación de los estilos globales
 import './index.css';
@@ -44,13 +46,21 @@ const router = createBrowserRouter([
         element: <Corporativo /> 
       },
       {
-        path: "informacion", // <-- 2. AÑADIDO: Define la nueva ruta
+        path: "informacion",
         element: <Informacion />
       },
       {
         path: "simulador",
         element: <Simulador />
+      },
+      {
+        path: "faq", // <-- 2. AÑADIDO: Define la nueva ruta
+        element: <FaqPage />
       }
+      // NOTA: Tu ruta catch-all anterior (path="*") 
+      // no se maneja así en createBrowserRouter. 
+      // React Router mostrará su propia página 404 por defecto,
+      // lo cual está bien.
     ],
   },
 ]);

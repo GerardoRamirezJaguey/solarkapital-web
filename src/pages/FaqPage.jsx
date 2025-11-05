@@ -97,7 +97,7 @@ const faqs = [
 
 // --- ¡ESTA ES LA CORRECCIÓN! ---
 // Definimos el email aquí para poder usarlo en el enlace
-const CONTACT_EMAIL = "contacto@solarkapitalmexico.com";
+const CONTACT_EMAIL = "edgar.ramirez@solarkapitalmexico.com";
 
 // --- COMPONENTE DE LA PÁGINA ---
 function FaqPage() {
