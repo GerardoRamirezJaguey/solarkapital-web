@@ -20,10 +20,10 @@ function Inicio() {
         <div className="absolute inset-0 bg-black/45" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Grid responsive: una columna en móvil, dos en pantallas grandes */}
+          {/* Grid responsive */}
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] items-center min-h-[60vh] lg:min-h-[70vh]">
 
-            {/* ----- Columna izquierda: texto + botones ----- */}
+            {/* ----- Columna izquierda ----- */}
             <div className="text-center lg:text-left space-y-6">
               <h1 className="font-extrabold text-white leading-tight
                              text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">
@@ -37,8 +37,9 @@ function Inicio() {
                 <span className="font-bold text-amber-400">reduce tu recibo</span> desde el primer día.
               </p>
 
-              {/* Botones responsivos: apilados en móvil, lado a lado en pantallas grandes */}
+              {/* Botones */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+                {/* CONTÁCTANOS -> correo */}
                 <a
                   href={`mailto:${CONTACT_EMAIL}?subject=Quiero%20cotizar%20un%20sistema%20solar`}
                   className="w-full sm:w-auto text-center bg-amber-500 text-gray-900 font-bold 
@@ -48,18 +49,20 @@ function Inicio() {
                   CONTÁCTANOS
                 </a>
 
-                <a
-                  href={`mailto:${CONTACT_EMAIL}?subject=Simulador%20de%20ahorro%20solar`}
+                {/* SIMULADOR SOLO EN MÓVIL -> página /simulador */}
+                <Link
+                  to="/simulador"
                   className="w-full sm:w-auto text-center border border-amber-400 text-amber-300 font-semibold
                              py-3 px-8 rounded-full text-base sm:text-lg
-                             hover:bg-amber-400 hover:text-gray-900 transition-colors duration-300"
+                             hover:bg-amber-400 hover:text-gray-900 transition-colors duration-300
+                             md:hidden"
                 >
                   SIMULADOR
-                </a>
+                </Link>
               </div>
             </div>
 
-            {/* ----- Columna derecha: píldora de SOLUCIONES ----- */}
+            {/* ----- Columna derecha: píldora SOLUCIONES ----- */}
             <div className="flex justify-center lg:justify-end">
               <div
                 className="bg-white/25 backdrop-blur-md rounded-full
@@ -152,8 +155,7 @@ function Inicio() {
         </div>
       </section>
 
-      {/* ================= BENEFICIOS (AHORRO / PLUSVALÍA) ================= */}
-      {/* Sección aparte: se adapta a todo y en desktop se “monta” un poco sobre el hero */}
+      {/* ================= BENEFICIOS ================= */}
       <section className="-mt-4 sm:-mt-8 lg:-mt-12 relative z-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
@@ -196,7 +198,6 @@ function Inicio() {
             ¿CÓMO FUNCIONA LA ENERGÍA SOLAR?
           </h2>
 
-          {/* Carrusel horizontal que funciona igual en todas las pantallas */}
           <div className="overflow-x-auto pb-4">
             <div className="flex flex-row flex-nowrap gap-4 sm:gap-6">
               {/* 1 */}
@@ -209,7 +210,6 @@ function Inicio() {
                   Los paneles absorben la luz del sol...
                 </p>
               </div>
-
               {/* 2 */}
               <div className="flex-shrink-0 w-60 sm:w-72 p-6 bg-white rounded-lg shadow-md border-t-4 border-amber-500 text-center">
                 <HiOutlineSwitchHorizontal className="text-4xl sm:text-5xl text-amber-500 mb-4 mx-auto" />
@@ -220,7 +220,6 @@ function Inicio() {
                   Un inversor convierte la corriente...
                 </p>
               </div>
-
               {/* 3 */}
               <div className="flex-shrink-0 w-60 sm:w-72 p-6 bg-white rounded-lg shadow-md border-t-4 border-amber-500 text-center">
                 <FaLightbulb className="text-4xl sm:text-5xl text-amber-500 mb-4 mx-auto" />
@@ -231,7 +230,6 @@ function Inicio() {
                   La energía generada se utiliza...
                 </p>
               </div>
-
               {/* 4 */}
               <div className="flex-shrink-0 w-60 sm:w-72 p-6 bg-white rounded-lg shadow-md border-t-4 border-amber-500 text-center">
                 <FaNetworkWired className="text-4xl sm:text-5xl text-amber-500 mb-4 mx-auto" />
@@ -242,7 +240,6 @@ function Inicio() {
                   Si produces más de lo que consumes...
                 </p>
               </div>
-
               {/* 5 */}
               <div className="flex-shrink-0 w-60 sm:w-72 p-6 bg-white rounded-lg shadow-md border-t-4 border-amber-500 text-center">
                 <ImMeter className="text-4xl sm:text-5xl text-amber-500 mb-4 mx-auto" />
@@ -253,7 +250,6 @@ function Inicio() {
                   Un medidor bidireccional registra...
                 </p>
               </div>
-
               {/* 6 */}
               <div className="flex-shrink-0 w-60 sm:w-72 p-6 bg-white rounded-lg shadow-md border-t-4 border-amber-500 text-center">
                 <FaPiggyBank className="text-4xl sm:text-5xl text-amber-500 mb-4 mx-auto" />

@@ -1,23 +1,27 @@
+import React, { useState } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import logo from './assets/Logo.png';
-// 1. IMPORTA LOS ÍCONOS DE REDES SOCIALES
+// Íconos redes
 import { FaWhatsapp, FaFacebook, FaInstagram } from 'react-icons/fa';
 import ClientesCarrusel from './components/ClientesCarrusel';
 
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="bg-black text-white">
       {/* HEADER */}
-      <header className="py-4 px-8 sticky top-0 bg-gray-900 bg-opacity-90 backdrop-blur-sm z-20">
+      <header className="py-4 px-4 sm:px-8 sticky top-0 bg-gray-900 bg-opacity-90 backdrop-blur-sm z-20">
         <nav className="container mx-auto flex justify-between items-center">
-          <Link to="/">
+          {/* LOGO */}
+          <Link to="/" onClick={() => setIsMenuOpen(false)}>
             <div className="logo-container">
-              <img src={logo} alt="Solarkapital México Logo" className="h-12" />
+              <img src={logo} alt="Solarkapital México Logo" className="h-10 sm:h-12" />
             </div>
           </Link>
 
-          <ul className="hidden md:flex space-x-8">
-            {/* 2. AÑADIDO ENLACE "INICIO" */}
+          {/* MENÚ DESKTOP */}
+          <ul className="hidden md:flex space-x-8 text-sm lg:text-base">
             <li>
               <Link to="/" className="hover:text-yellow-400 transition-colors">
                 Inicio
@@ -43,29 +47,126 @@ function App() {
                 Corporativo
               </Link>
             </li>
-            {/* 3. AÑADIDO ENLACE "INFORMACIÓN" */}
             <li>
               <Link to="/informacion" className="hover:text-yellow-400 transition-colors">
                 Información
               </Link>
             </li>
+            {/* NUEVO: FAQ */}
+            <li>
+              <Link to="/faq" className="hover:text-yellow-400 transition-colors">
+                FAQ
+              </Link>
+            </li>
           </ul>
 
+          {/* BOTÓN SIMULADOR (solo desktop) */}
           <Link
             to="/simulador"
             className="hidden md:block bg-yellow-400 text-black font-bold py-2 px-4 rounded hover:bg-yellow-500 transition-colors"
           >
             Simulador
           </Link>
+
+          {/* BOTÓN HAMBURGUESA (solo móvil) */}
+          <button
+            className="md:hidden text-white focus:outline-none ml-2"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Abrir menú"
+          >
+            <svg
+              className="w-7 h-7"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              {isMenuOpen ? (
+                <path
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
         </nav>
+
+        {/* MENÚ MÓVIL DESPLEGABLE */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-gray-900 bg-opacity-95 border-t border-gray-800">
+            <div className="container mx-auto px-4 py-3 space-y-2 text-sm">
+              <Link
+                to="/"
+                onClick={() => setIsMenuOpen(false)}
+                className="block py-1 hover:text-yellow-400"
+              >
+                Inicio
+              </Link>
+              <Link
+                to="/hogar"
+                onClick={() => setIsMenuOpen(false)}
+                className="block py-1 hover:text-yellow-400"
+              >
+                Hogar
+              </Link>
+              <Link
+                to="/negocio"
+                onClick={() => setIsMenuOpen(false)}
+                className="block py-1 hover:text-yellow-400"
+              >
+                Negocio
+              </Link>
+              <Link
+                to="/industria"
+                onClick={() => setIsMenuOpen(false)}
+                className="block py-1 hover:text-yellow-400"
+              >
+                Industria
+              </Link>
+              <Link
+                to="/corporativo"
+                onClick={() => setIsMenuOpen(false)}
+                className="block py-1 hover:text-yellow-400"
+              >
+                Corporativo
+              </Link>
+              <Link
+                to="/informacion"
+                onClick={() => setIsMenuOpen(false)}
+                className="block py-1 hover:text-yellow-400"
+              >
+                Información
+              </Link>
+              <Link
+                to="/faq"
+                onClick={() => setIsMenuOpen(false)}
+                className="block py-1 hover:text-yellow-400"
+              >
+                FAQ
+              </Link>
+
+              {/* Simulador también disponible en el menú móvil */}
+              <Link
+                to="/simulador"
+                onClick={() => setIsMenuOpen(false)}
+                className="block mt-2 text-center bg-yellow-400 text-black font-semibold py-2 rounded hover:bg-yellow-500 transition-colors"
+              >
+                Simulador
+              </Link>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* CONTENIDO PRINCIPAL */}
       <main>
-        {/* Aquí van las páginas según la ruta */}
         <Outlet />
-
-        {/* Carrusel de clientes visible en todas las páginas */}
         <ClientesCarrusel />
       </main>
 
@@ -76,22 +177,21 @@ function App() {
           <p className="mb-4">
             Transformando la energía de México, un panel a la vez.
           </p>
-          
-          {/* 4. AÑADIDOS ÍCONOS DE REDES SOCIALES */}
+
           <div className="flex justify-center gap-6 mb-6">
-            <a 
-              href="https://www.facebook.com/SolarKapitalMexico" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://www.facebook.com/SolarKapitalMexico"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Facebook"
               className="text-gray-400 hover:text-yellow-400 transition-colors"
             >
               <FaFacebook size={28} />
             </a>
-            <a 
-              href="https://www.instagram.com/solarkapitalmexico_" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://www.instagram.com/solarkapitalmexico_"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Instagram"
               className="text-gray-400 hover:text-yellow-400 transition-colors"
             >
