@@ -5,6 +5,8 @@ import { FaSolarPanel, FaPiggyBank, FaNetworkWired } from 'react-icons/fa';
 import { HiOutlineSwitchHorizontal } from 'react-icons/hi';
 import { FaLightbulb } from 'react-icons/fa6';
 import { ImMeter } from 'react-icons/im';
+import { motion } from "framer-motion";
+
 
 const CONTACT_EMAIL = 'edagr.ramirez@rkapitalmexico.com';
 
@@ -192,75 +194,74 @@ function Inicio() {
       </section>
 
       {/* ================= ¿CÓMO FUNCIONA LA ENERGÍA SOLAR? ================= */}
-      <section className="py-16 sm:py-20 bg-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-10 sm:mb-12 text-gray-800 text-center">
-            ¿CÓMO FUNCIONA LA ENERGÍA SOLAR?
-          </h2>
+      <section className="relative py-24 bg-gradient-to-b from-amber-50 via-white to-yellow-100 overflow-hidden">
+        {/* Fondo solar dinámico */}
+        <motion.div
+          className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,223,100,0.25),transparent_70%)]"
+          animate={{ opacity: [0.6, 1, 0.6], scale: [1, 1.05, 1] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
 
-          <div className="overflow-x-auto pb-4">
-            <div className="flex flex-row flex-nowrap gap-4 sm:gap-6">
-              {/* 1 */}
-              <div className="flex-shrink-0 w-60 sm:w-72 p-6 bg-white rounded-lg shadow-md border-t-4 border-amber-500 text-center">
-                <FaSolarPanel className="text-4xl sm:text-5xl text-amber-500 mb-4 mx-auto" />
-                <h3 className="text-lg sm:text-2xl font-semibold text-amber-600 mb-2">
-                  1. Captación Solar
-                </h3>
-                <p className="text-gray-700 text-sm">
-                  Los paneles absorben la luz del sol...
-                </p>
-              </div>
-              {/* 2 */}
-              <div className="flex-shrink-0 w-60 sm:w-72 p-6 bg-white rounded-lg shadow-md border-t-4 border-amber-500 text-center">
-                <HiOutlineSwitchHorizontal className="text-4xl sm:text-5xl text-amber-500 mb-4 mx-auto" />
-                <h3 className="text-lg sm:text-2xl font-semibold text-amber-600 mb-2">
-                  2. Conversión a CA
-                </h3>
-                <p className="text-gray-700 text-sm">
-                  Un inversor convierte la corriente...
-                </p>
-              </div>
-              {/* 3 */}
-              <div className="flex-shrink-0 w-60 sm:w-72 p-6 bg-white rounded-lg shadow-md border-t-4 border-amber-500 text-center">
-                <FaLightbulb className="text-4xl sm:text-5xl text-amber-500 mb-4 mx-auto" />
-                <h3 className="text-lg sm:text-2xl font-semibold text-amber-600 mb-2">
-                  3. Consumo
-                </h3>
-                <p className="text-gray-700 text-sm">
-                  La energía generada se utiliza...
-                </p>
-              </div>
-              {/* 4 */}
-              <div className="flex-shrink-0 w-60 sm:w-72 p-6 bg-white rounded-lg shadow-md border-t-4 border-amber-500 text-center">
-                <FaNetworkWired className="text-4xl sm:text-5xl text-amber-500 mb-4 mx-auto" />
-                <h3 className="text-lg sm:text-2xl font-semibold text-amber-600 mb-2">
-                  4. Excedente a Red
-                </h3>
-                <p className="text-gray-700 text-sm">
-                  Si produces más de lo que consumes...
-                </p>
-              </div>
-              {/* 5 */}
-              <div className="flex-shrink-0 w-60 sm:w-72 p-6 bg-white rounded-lg shadow-md border-t-4 border-amber-500 text-center">
-                <ImMeter className="text-4xl sm:text-5xl text-amber-500 mb-4 mx-auto" />
-                <h3 className="text-lg sm:text-2xl font-semibold text-amber-600 mb-2">
-                  5. Medición
-                </h3>
-                <p className="text-gray-700 text-sm">
-                  Un medidor bidireccional registra...
-                </p>
-              </div>
-              {/* 6 */}
-              <div className="flex-shrink-0 w-60 sm:w-72 p-6 bg-white rounded-lg shadow-md border-t-4 border-amber-500 text-center">
-                <FaPiggyBank className="text-4xl sm:text-5xl text-amber-500 mb-4 mx-auto" />
-                <h3 className="text-lg sm:text-2xl font-semibold text-amber-600 mb-2">
-                  6. Ahorro
-                </h3>
-                <p className="text-gray-700 text-sm">
-                  CFE solo te cobrará la diferencia...
-                </p>
-              </div>
-            </div>
+        {/* Halo giratorio */}
+        <motion.div
+          className="absolute -top-20 -left-20 w-[800px] h-[800px] bg-gradient-to-br from-yellow-300/30 via-amber-300/10 to-transparent rotate-45 blur-3xl"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        />
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-10 sm:mb-14 bg-gradient-to-r from-yellow-400 via-orange-500 to-amber-700 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(255,200,0,0.4)]"
+          >
+            ¿CÓMO FUNCIONA LA ENERGÍA SOLAR?
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-gray-700 text-lg sm:text-xl max-w-2xl mx-auto mb-16"
+          >
+            Cada rayo del sol se transforma en energía limpia y ahorro real.{" "}
+            <span className="text-amber-500 font-semibold">Conoce el proceso.</span>
+          </motion.p>
+
+          {/* Tarjetas adaptadas sin scroll */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+            {[
+              { icon: "☀️", title: "1. Captación Solar", text: "Los paneles fotovoltaicos absorben la luz solar y la convierten en energía eléctrica.", color: "from-yellow-300 to-amber-500" },
+              { icon: "⚡", title: "2. Conversión a CA", text: "El inversor convierte la energía directa (DC) en corriente alterna (CA).", color: "from-amber-400 to-orange-500" },
+              { icon: "💡", title: "3. Consumo Inteligente", text: "La energía generada alimenta tus aparatos eléctricos reduciendo tu dependencia de CFE.", color: "from-orange-500 to-yellow-400" },
+              { icon: "🌐", title: "4. Excedente a Red", text: "La energía sobrante se inyecta a la red eléctrica, generando crédito a tu favor.", color: "from-yellow-400 to-green-400" },
+              { icon: "📊", title: "5. Medición Inteligente", text: "Un medidor bidireccional registra tanto el consumo como la energía que entregas.", color: "from-green-400 to-emerald-500" },
+              { icon: "💰", title: "6. Ahorro Garantizado", text: "Pagas menos en tu recibo: más energía limpia, más dinero para ti.", color: "from-amber-500 to-yellow-300" },
+            ].map((step, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9, y: 50 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ delay: i * 0.15, duration: 0.6 }}
+                viewport={{ once: true }}
+                className={`relative bg-white/95 backdrop-blur-md border-t-4 border-amber-400 rounded-2xl shadow-lg hover:shadow-[0_0_35px_rgba(255,204,0,0.4)] p-8 w-full sm:w-[90%] md:w-[80%] lg:w-[90%] transition-all duration-500 group`}
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-15 blur-2xl transition-all duration-700`}></div>
+
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  <div className={`text-6xl mb-4 bg-gradient-to-r ${step.color} bg-clip-text text-transparent`}>
+                    {step.icon}
+                  </div>
+                  <h3 className={`text-xl font-bold mb-2 bg-gradient-to-r ${step.color} bg-clip-text text-transparent`}>
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-700 text-sm sm:text-base">{step.text}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
